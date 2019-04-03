@@ -68,8 +68,8 @@ Humanoid.prototype.annoy = function() {
   return `${this.name} is tone-deaf but still sings to every song.`
 }
 
-Humanoid.prototype.taunt = function() {
-  return `${this.name} thwarts your poor willpower by bringing in donuts every morning.`
+Humanoid.prototype.taunt = function(prey) {
+  return `${this.name} thwarts ${prey.name}'s willpower by bringing in donuts every morning. ${prey.name}'s width increases to ${prey.dimensions.width}!`
 }
 
 Humanoid.prototype.pray = function() {
@@ -90,8 +90,8 @@ Villan.prototype.avoid = function() {
   return `${this.name} hides behind ${this.weapons[2]} instead of creating meaningful boundaries.`
 }
 
-Villan.prototype.distract = function() {
-  return `${this.name} uses ${this.weapons[1]} to confuse you.`
+Villan.prototype.distract = function(prey) {
+  return `${this.name} uses ${this.weapons[1]} to distract ${prey.name}. ${prey.name} walks away confused, with ${[prey.healthPoints - 2]} health points.`
 }
 
 Villan.prototype.harass = function() {
@@ -226,11 +226,11 @@ Villan.prototype.disgrace = function () {
   console.log(karen.team);
   console.log(karen.greet());
   console.log(karen.annoy());
-  console.log(karen.taunt());
+  console.log(karen.taunt(archer));
   console.log(karen.pray());
 
   console.log(richWhiteNarcissist.avoid());
-  console.log(richWhiteNarcissist.distract());
+  console.log(richWhiteNarcissist.distract(karen));
   console.log(richWhiteNarcissist.harass());
   console.log(richWhiteNarcissist.influence());
   console.log(richWhiteNarcissist.disgrace());
