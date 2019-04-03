@@ -86,8 +86,8 @@ function Villan(vilAttr) {
 
 Villan.prototype = Object.create(Humanoid.prototype);
 
-Villan.prototype.avoid = function() {
-  return `${this.name} hides behind ${this.weapons[2]} instead of creating meaningful boundaries.`
+Villan.prototype.avoid = function(prey) {
+  return `${this.name} hides behind ${this.weapons[2]} instead of creating meaningful boundaries. ${prey.name} must relinquish native culture, customs and cease speaking ${prey.language}.`
 }
 
 Villan.prototype.distract = function(prey) {
@@ -129,7 +129,7 @@ Villan.prototype.disgrace = function () {
     weapons: [
       'Staff of Shamalama',
     ],
-    language: 'Common Tongue',
+    language: 'The Old Words',
   });
 
   const swordsman = new Humanoid({
@@ -146,7 +146,7 @@ Villan.prototype.disgrace = function () {
       'Giant Sword',
       'Shield',
     ],
-    language: 'Common Tongue',
+    language: 'The Common Tongue',
   });
 
   const archer = new Humanoid({
@@ -229,7 +229,7 @@ Villan.prototype.disgrace = function () {
   console.log(karen.taunt(archer));
   console.log(karen.pray());
 
-  console.log(richWhiteNarcissist.avoid());
+  console.log(richWhiteNarcissist.avoid(mage));
   console.log(richWhiteNarcissist.distract(karen));
   console.log(richWhiteNarcissist.harass());
   console.log(richWhiteNarcissist.influence());
