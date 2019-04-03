@@ -18,9 +18,7 @@
 function GameObject(attributes){
   this.createdAt = attributes.createdAt,
   this.name = attributes.name,
-  this.dimensions = attributes.dimensions,
-
-
+  this.dimensions = attributes.dimensions
 }
 
 GameObject.prototype.destroy = function() {
@@ -33,16 +31,16 @@ GameObject.prototype.destroy = function() {
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
-function CharacterStats(charaAt){
-  this.healthPoints = charaAt.healthPoints,
-  GameObject.call(this.charAt);
-
+function CharacterStats(charAttr) {
+  GameObject.call(this, charAttr);
+  this.healthPoints = charAttr.healthPoints
 }
+
+CharacterStats.prototype = Object.create(GameObject.prototype);
 
 CharacterStats.prototype.takeDamage = function () {
-  return '<object name> took damage.'
+  return `${this.name} took damage.`
 }
-
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -53,10 +51,19 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-function Humanoid(){
-
+function Humanoid(humAttr){
+  CharacterStats.call(this, humAttr);
+  this.team = humAttr.team,
+  this.weapons = humAttr.weapons,
+  this.language = humAttr.language
 }
  
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+Humanoid.prototype.greet = function() {
+  return `${this.name} offers a greeting in ${this.language}`;
+}
+
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -126,7 +133,7 @@ function Humanoid(){
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
