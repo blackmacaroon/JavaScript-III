@@ -15,6 +15,17 @@
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
+function GameObject(attributes){
+  this.createdAt = attributes.createdAt,
+  this.name = attributes.name,
+  this.dimensions = attributes.dimensions,
+
+
+}
+
+GameObject.prototype.destroy = function() {
+  return `${this.name} was removed from the game.`
+}
 
 /*
   === CharacterStats ===
@@ -22,6 +33,16 @@
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
+function CharacterStats(charaAt){
+  this.healthPoints = charaAt.healthPoints,
+  GameObject.call(this.charAt);
+
+}
+
+CharacterStats.prototype.takeDamage = function () {
+  return '<object name> took damage.'
+}
+
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -32,6 +53,9 @@
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
+function Humanoid(){
+
+}
  
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -41,7 +65,7 @@
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
