@@ -15,7 +15,7 @@
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
-function GameObject(attributes){
+function GameObject(attributes) {
   this.createdAt = attributes.createdAt,
   this.name = attributes.name,
   this.dimensions = attributes.dimensions
@@ -51,7 +51,7 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-function Humanoid(humAttr){
+function Humanoid(humAttr) {
   CharacterStats.call(this, humAttr);
   this.team = humAttr.team,
   this.weapons = humAttr.weapons,
@@ -64,12 +64,26 @@ Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}`;
 }
 
-Humanoid.prototype.annoy = function() {
+
+
+/* == Villan ==       */
+function Villan(vilAttr) {
+  Humanoid.call(this, vilAttr);
+  
+}
+
+Villan.prototype = Object.create(Humanoid.prototype);
+
+Villan.prototype.annoy = function() {
   return `${this.name} is tone-deaf but still sings to every song.`
 }
 
-Humanoid.prototype.taunt = function() {
-  return `${this.name} thwarts your poor willpower by bringing in donuts every morning`
+Villan.prototype.taunt = function() {
+  return `${this.name} thwarts your poor willpower by bringing in donuts every morning.`
+}
+
+Villan.prototype.pray = function() {
+  return `${this.name} offers to pray for you, making your soul cringe.`
 }
 
 /*
@@ -131,7 +145,7 @@ Humanoid.prototype.taunt = function() {
     language: 'Elvish',
   });
 
-  const villan = new Humanoid ({
+  const karen = new Villan ({
     createdAt: new Date(),
     dimensions: {
       length: 2,
@@ -145,8 +159,27 @@ Humanoid.prototype.taunt = function() {
       'Crucifix',
       'Empty Calories',
     ],
-    language: 'American'
+    language: 'Mom'
   })
+
+  const richWhiteNarcissist = new Villan ({
+    createdAt: new Date(),
+    dimentions: {
+      length: 3,
+      width: 3,
+      height: 3,
+    },
+    healthPoints : 30,
+    name: 'Drumpf',
+    team: 'America',
+    weapons: [
+      'Money',
+      'The Best Words'
+    ],
+    language: 'American'
+
+  })
+
 
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
@@ -165,7 +198,8 @@ Humanoid.prototype.taunt = function() {
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
-  console.log(villan.team);
-  console.log(villan.greet());
-  console.log(villan.annoy());
-  console.log(villan.taunt());
+  console.log(karen.team);
+  console.log(karen.greet());
+  console.log(karen.annoy());
+  console.log(karen.taunt());
+  console.log(karen.pray());
