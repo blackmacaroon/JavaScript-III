@@ -64,6 +64,14 @@ Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}`;
 }
 
+Humanoid.prototype.annoy = function() {
+  return `${this.name} is tone-deaf but still sings to every song.`
+}
+
+Humanoid.prototype.taunt = function() {
+  return `${this.name} thwarts your poor willpower by bringing in donuts every morning`
+}
+
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -123,6 +131,23 @@ Humanoid.prototype.greet = function() {
     language: 'Elvish',
   });
 
+  const villan = new Humanoid ({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      witdh: 4,
+      height: 1,
+    },
+    healthPoints: 8,
+    name: 'Karen',
+    team: 'Green Bay Packers',
+    weapons: [
+      'Crucifix',
+      'Empty Calories',
+    ],
+    language: 'American'
+  })
+
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
   console.log(swordsman.healthPoints); // 15
@@ -139,3 +164,8 @@ Humanoid.prototype.greet = function() {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  console.log(villan.team);
+  console.log(villan.greet());
+  console.log(villan.annoy());
+  console.log(villan.taunt());
