@@ -41,6 +41,64 @@ console.log(me.favorite());
 
 // code example for New Binding
 
+function Vacation(attributes){
+      this.name = attributes.name;
+      this.country = attributes.country;
+      this.climate = attributes.climate;
+      this.cuisine = attributes.cuisine;
+      this.feature = attributes.feature;
+      console.log(this);
+}
+
+Vacation.prototype.perk = function() {
+      return `${this.name}, home of the ${this.feature}`;
+}
+
+const venice = new Vacation({
+      name: "Venice",
+      country: "Italy",
+      climate: "moderate",
+      cuisine: "meatballs",
+      feature: "sunken library"
+});
+
+console.log(venice.perk());
 // Principle 4
 
 // code example for Explicit Binding
+
+
+var maths = {
+  x: 9,
+  y: 4,
+  getZ: function(){ 
+        return this.x + this.y; 
+  }
+};
+
+// console.log(maths.getZ());
+
+var whatsZ = maths.getZ;
+whatsZ(); 
+
+var bindWhatsZ = whatsZ.bind(maths);
+console.log(bindWhatsZ());
+
+//BIND IS TRICKY.....
+
+
+
+// const thing = {
+//       name: "Bill",
+//       place: "Capitol Hill",
+//       sing: function(){
+//             return `I'm just a ${this.name}, yeah I'm only a ${this.name}, and I'm sitting here on ${this.place}`;
+//       }
+// }
+
+
+    
+    
+// const useLater = thing.bind(thing.sing());
+// // console.log(thing.sing());
+// console.log(useLater);
